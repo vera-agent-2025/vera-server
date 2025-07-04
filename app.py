@@ -12,21 +12,21 @@ def load_prompt():
 
 @app.route("/vera", methods=["POST"])
 def vera():
-    user_input = request.json.get("message", "")
-    system_prompt = load_prompt()
+    try:
+        user_input = request.json.get("message", "")
+        system_prompt = load_prompt()
 
-   try:
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_input}
-        ]
-    )
-    return jsonify({"reply": response["choices"][0]["message"]["content"]})
-except Exception as e:
-    return jsonify({"error": str(e)}), 500
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_input}
+            ]
+        )
 
+        return jsonify({"reply": response["choices"][0]["message"]["content"]})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
