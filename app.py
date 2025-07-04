@@ -3,7 +3,7 @@ import openai
 import os
 
 # Инициализация клиента OpenAI
-client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = openai.Client(api_key=os.environ.get("OPENAI_API_KEY"))
 
 app = Flask(__name__)
 
