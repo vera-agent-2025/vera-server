@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
-from openai import OpenAI
 import os
+from openai import OpenAI
 
-# Создаём клиента с ключом API из переменных окружения
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 app = Flask(__name__)
@@ -32,3 +31,4 @@ def vera():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
