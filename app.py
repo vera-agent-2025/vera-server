@@ -28,7 +28,9 @@ def vera():
 
         return jsonify({"reply": response["choices"][0]["message"]["content"]})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    print("Ошибка на сервере:", e)
+    return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
