@@ -15,6 +15,7 @@ def vera():
     user_input = request.json.get("message", "")
     system_prompt = load_prompt()
 
+   try:
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[
@@ -23,6 +24,9 @@ def vera():
         ]
     )
     return jsonify({"reply": response["choices"][0]["message"]["content"]})
+except Exception as e:
+    return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
