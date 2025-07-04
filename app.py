@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
-from openai import OpenAI
+import openai
 import os
 
+from openai import OpenAI
+
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
 app = Flask(__name__)
 
 def load_prompt():
