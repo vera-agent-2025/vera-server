@@ -1,9 +1,8 @@
 from flask import Flask, request, jsonify
-import openai
+from openai import OpenAI
 import os
 
-from openai import OpenAI
-
+# Создаём клиента с ключом API из переменных окружения
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 app = Flask(__name__)
